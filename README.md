@@ -28,6 +28,7 @@ Starter Code
 # Technologies Used
 HTML, CSS, JavaScript
 # Deployed Project
+https://prohea.github.io/Password-Generator/
 
 # Screenshot
 ![Password Generator]()
