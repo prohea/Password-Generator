@@ -146,6 +146,50 @@ function getRandom(arr) {
   return randElement;
 }
 
+function generatePassword() {
+  var options = getPasswordOpt();
+
+  var result = [];
+
+  var possibleChar = [];
+
+  var guaranteedChar = [];
+
+  if(!options)return null;
+
+  if(options.hasSpecialChar) {
+    possibleChar = possibleChar.concat(specialChar);
+    guaranteedChar.push(getRandom(specialChar));
+  }
+
+  if(options.hasNumericChar) {
+    possibleChar = possibleChar.concat(numericChar);
+    guaranteedChar.push(getRandom(numericChar));
+  }
+
+  if(options.hasLowerCasedChar) {
+    possibleChar = possibleChar.concat(lowerCasedChar);
+    guaranteedChar.push(getRandom(lowerCasedChar));
+  }
+
+  if(options.hasUpperCasedChar) {
+    possibleChar = possibleChar.concat(upperCasedChar);
+    guaranteedChar.push(getRandom(upperCasedChar));
+  }
+
+  for(var i =0; i < options.length; i++) {
+    var possibleChar = getRandom(possibleChar);
+
+    result.push(possibleChar);
+  }
+
+  for(var i = 0; i < guaranteedChar.length; i++) {
+    result[i] = guaranteedChar[i];
+  }
+
+  return result.join('');
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
