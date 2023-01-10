@@ -27,8 +27,9 @@ Starter Code
 
 # Technologies Used
 HTML, CSS, JavaScript
+
 # Deployed Project
-https://prohea.github.io/Password-Generator/
+https://github.com/prohea/Tough-Pass
 
 # Screenshot
-![Password Generator]()
+![Password Generator](./Assets/image/generate-pw.png)
