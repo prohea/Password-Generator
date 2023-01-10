@@ -26,7 +26,7 @@ var specialChar = [
 ];
 
 //array of numeric char to be included in pw
-var numericChar = ["0","1","2","3","4","5","6","7","8","9"];
+var numericChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 //array of lowercase char to be included in pw
 var lowerCasedChar = [
@@ -103,112 +103,125 @@ function getPwOptions() {
 	}
 
 	//conditional statement to check if pw length is at least 12 char long. Prompts end if this evaluates false
-	if (length < 12 ) {
+	if (length < 12) {
 		alert("Password length must be at least 12 characters.");
 		return null;
 	}
 
 	//conditional statement to check if pw length is less than 128 characters long. Prompts end if this evaluates false {
-		if (length > 128) {
-			alert("Password length must be less than 129 characters.");
-			return null;
-		}
-
-		//variable to store boolean regarding the inclusion of special char
-		var hasSpecialChar = confirm(
-			"Click OK to confirm including special characters."
-		);
-
-		//variable to store boolean regarding the inclusion of numeric char
-		var hasNumericChar = confirm(
-			"Click OK to confirm including numeric characters."
-		);
-
-		//variable to store boolean regarding the inclusion of lowercase char
-		var hasLowerCasedChar = confirm(
-			"Click OK to confirm including lowercase characters."
-		);
-
-		//variable to store boolean regarding the inclusion of uppercase char
-		var hasUpperCasedChar = confirm(
-			"Click OK to confirm including uppercase characters."
-		);
-
-		//conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
-		if (
-			hasSpecialChar === false &&
-			hasNumericChar === false &&
-			hasLowerCasedChar === false &&
-			hasUpperCasedChar === false
-		) {
-			alert("Must select at least one character type.");
-			return null;
-		}
-
-		//object to store user input
-		var pwOptions = {
-			length: length,
-			hasSpecialChar: hasSpecialChar,
-			hasNumericChar: hasNumericChar,
-			hasLowerCasedChar: hasLowerCasedChar,
-			hasUpperCasedChar: hasUpperCasedChar
-		};
-
-		return pwOptions;
+	if (length > 128) {
+		alert("Password length must be less than 129 characters.");
+		return null;
 	}
 
-	//function for getting a random element from an array
-	function getRan(arr) {
-		var ranInd = Math.floor(Math.random() * arr.length);
-		var ranEle = arr[ranInd];
+	//variable to store boolean regarding the inclusion of special char
+	var hasSpecialChar = confirm(
+		"Click OK to confirm including special characters."
+	);
 
-		return ranEle;
+	//variable to store boolean regarding the inclusion of numeric char
+	var hasNumericChar = confirm(
+		"Click OK to confirm including numeric characters."
+	);
+
+	//variable to store boolean regarding the inclusion of lowercase char
+	var hasLowerCasedChar = confirm(
+		"Click OK to confirm including lowercase characters."
+	);
+
+	//variable to store boolean regarding the inclusion of uppercase char
+	var hasUpperCasedChar = confirm(
+		"Click OK to confirm including uppercase characters."
+	);
+
+	//conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+	if (
+		hasSpecialChar === false &&
+		hasNumericChar === false &&
+		hasLowerCasedChar === false &&
+		hasUpperCasedChar === false
+	) {
+		alert("Must select at least one character type.");
+		return null;
 	}
 
-	//function to generate pw with user input
-	function genPw() {
-		var options = getPwOptions();
-		//variable to store pw as it's being concatenated
-		var result = [];
+	//object to store user input
+	var pwOptions = {
+		length: length,
+		hasSpecialChar: hasSpecialChar,
+		hasNumericChar: hasNumericChar,
+		hasLowerCasedChar: hasLowerCasedChar,
+		hasUpperCasedChar: hasUpperCasedChar,
+	};
 
-		//array to store types of char to include in pw
-		var possChar = [];
+	return pwOptions;
+}
 
-		//array to contain one of each type of chosen char to ensure each will be used
-		var guaranteedChar = [];
+//function for getting a random element from an array
+function getRan(arr) {
+	var ranInd = Math.floor(Math.random() * arr.length);
+	var ranEle = arr[ranInd];
 
-		//check if an options object exists, if not exit the function
-		if (!options) return null;
+	return ranEle;
+}
 
-		//conditional statement that adds array of special char into array of possible char based on user input
-		//push new random special char to guaranteed char
-		if (options.hasSpecialChar) {
-			possChar = possChar.concat(specialChar);
-			guaranteedChar.push(getRan(specialChar));
-		}
+//function to generate pw with user input
+function genPw() {
+	var options = getPwOptions();
+	//variable to store pw as it's being concatenated
+	var result = [];
 
-		//conditional statement that adds array of numeric char into array of possible char based on user input
-		//push new random numeric char to guaranteed char
-		if (options.hasNumericChar) {
-			possChar = possChar.concat(numericChar);
-			guaranteedChar.push(getRan(numericChar));
-		}
+	//array to store types of char to include in pw
+	var possChar = [];
 
-		//conditional statement that adds array of lowercase char into array of possible char based on user input
-		//push new random lowercase char to guaranteed char
-		if (options.hasLowerCasedChar) {
-			possChar = possChar.concat(lowerCasedChar);
-			guaranteedChar.push(getRan(lowerCasedChar));
-		}
+	//array to contain one of each type of chosen char to ensure each will be used
+	var guaranteedChar = [];
 
-		//conditional statement that adds array of upper char into array of possible char based on user input
-		//push new random uppercase char to guaranteed char
-		if (options.hasUpperCasedChar) {
-			possChar = possChar.concat(upperCasedChar);
-			guaranteedChar.push(getRan(upperCasedChar));
-		}
+	//check if an options object exists, if not exit the function
+	if (!options) return null;
 
+	//conditional statement that adds array of special char into array of possible char based on user input
+	//push new random special char to guaranteed char
+	if (options.hasSpecialChar) {
+		possChar = possChar.concat(specialChar);
+		guaranteedChar.push(getRan(specialChar));
 	}
+
+	//conditional statement that adds array of numeric char into array of possible char based on user input
+	//push new random numeric char to guaranteed char
+	if (options.hasNumericChar) {
+		possChar = possChar.concat(numericChar);
+		guaranteedChar.push(getRan(numericChar));
+	}
+
+	//conditional statement that adds array of lowercase char into array of possible char based on user input
+	//push new random lowercase char to guaranteed char
+	if (options.hasLowerCasedChar) {
+		possChar = possChar.concat(lowerCasedChar);
+		guaranteedChar.push(getRan(lowerCasedChar));
+	}
+
+	//conditional statement that adds array of upper char into array of possible char based on user input
+	//push new random uppercase char to guaranteed char
+	if (options.hasUpperCasedChar) {
+		possChar = possChar.concat(upperCasedChar);
+		guaranteedChar.push(getRan(upperCasedChar));
+	}
+
+	//for loop to iterate over the pw length from the options object, selecting random indices from the array of possible char and concatenating those char into the result variable
+	for (var i = 0; i < options.length; i++) {
+		var possChar = getRan(possChar);
+
+		result.push(possChar);
+	}
+
+	//mix in at least one of each guaranteed char in the result
+	for (var i = 0; i < guaranteedChar.length; i++) {
+		result[i] = guaranteedChar[i];
+	}
+
+	//transform the result into a string and pass into writePassword
+	return result.join("");
 }
 
 // Get references to the #generate element
